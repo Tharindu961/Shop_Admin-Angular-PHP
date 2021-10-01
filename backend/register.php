@@ -23,7 +23,7 @@
  		if($result){
  			header('Location: log.php');
  		}else{
- 			echo "weradi";
+ 			echo "wrong Combinations";
  		}
  	}
 
