@@ -1,31 +1,24 @@
-<?php 
-	
-	require_once('dbconnection.php');
+<?php
+include_once("dbconnection.php");
+$postdata = file_get_contents("php://input");
+if(isset($postdata) && !empty($postdata))
+{
+$request = json_decode($postdata);
+$name = trim($request->name);
+$pwd = mysqli_real_escape_string($mysqli, trim($request->pwd));
+$shopname = mysqli_real_escape_string($mysqli, trim($request->shopname));
+$email = mysqli_real_escape_string($mysqli, trim($request->email));
+$sql = "INSERT INTO shopowner(name,shop_name,password,email) VALUES ('$name','$shopname','$pwd','$email')";
+if ($mysqli->query($sql) === TRUE) {
+$authdata = [
+'name' => $name,
+'pwd' => '',
+'shopname' => $shopname,
+'email' => $email,
+'Id' => mysqli_insert_id($mysqli)
+];
+echo json_encode($authdata);
+}
+}
 
-
- ?>
-
- <?php 
- 	session_start();
- 	//echo $_SESSION['name'];
- 	
- 	if(isset($_POST['submit'])){
- 		$name = $_POST['name'];
-        $shop_name = $_POST['shop_name'];
- 		$email = $_POST['email'];
- 		$password = $_POST['password'];
- 		
- 		//create query
- 		$query = "INSERT INTO students (name,shop_name,email,password) VALUES ('{$name}','{$shop_name}','{$email}','{$password}')";
- 		//execute query
- 		$result = mysqli_query($connect,$query);
- 			//redirect page
- 		if($result){
- 			header('Location: log.php');
- 		}else{
- 			echo "wrong Combinations";
- 		}
- 	}
-
-
-  ?>
+?>
