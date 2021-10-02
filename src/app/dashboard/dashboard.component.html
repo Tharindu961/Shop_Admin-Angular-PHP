@@ -1,2 +1,22 @@
-<br/><br/>
-<p align="center">Welcome to Administrator Page</p>
+<br>
+<br>
+
+<div class="container">
+  <h1>Shop Owner List</h1>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Shop Name</th>
+        <th>Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let users of users">
+        <td><span>{{users.name}}</span></td>
+        <td><span>{{users.shop_name}}</span></td>
+        <td><span>{{users.email}}</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>

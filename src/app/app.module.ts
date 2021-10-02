@@ -15,8 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent,
-
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

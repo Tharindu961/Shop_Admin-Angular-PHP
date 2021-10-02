@@ -1,7 +1,8 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { catchError, map, retry } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Users } from './users';
+import { Observable } from 'rxjs';
 
 @Injectable({
 providedIn: 'root'
@@ -23,27 +24,29 @@ export class ApiService {
 }
 
 public userregistration(name,shopname,email,pwd) {
-return this.httpClient.post<any>(this.baseUrl + '/register.php', { name,shopname,email, pwd })
-.pipe(map(Users => {
-return Users;
+  return this.httpClient.post<any>(this.baseUrl + '/register.php', { name,shopname,email, pwd })
+  .pipe(map(Users => {
+  return Users;
 }));
 }
 
+
+
 //token
 setToken(token: string) {
-localStorage.setItem('token', token);
+  localStorage.setItem('token', token);
 }
 getToken() {
-return localStorage.getItem('token');
+  return localStorage.getItem('token');
 }
 deleteToken() {
-localStorage.removeItem('token');
+  localStorage.removeItem('token');
 }
 isLoggedIn() {
 const usertoken = this.getToken();
-if (usertoken != null) {
-return true
-}
-return false;
-}
+  if (usertoken != null) {
+    return true
+  }
+    return false;
+  }
 }
