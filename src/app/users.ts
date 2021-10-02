@@ -5,7 +5,7 @@ export class Users {
     public pwd:string;
     public email:string;
     
-    constructor(Id:number,name: string,shop_name:string,pwd:string,email:string) {
+    constructor(Id:number,name: string,shop_name: string,pwd:string,email:string) {
     this.Id = Id;
     this.name = name;
     this.shop_name = shop_name;
