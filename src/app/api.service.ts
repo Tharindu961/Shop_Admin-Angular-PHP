@@ -9,17 +9,17 @@ providedIn: 'root'
 })
 
 export class ApiService {
-  redirectUrl: string;
-  baseUrl:string = "http://localhost/shopnew/backend";
-  @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
-  constructor(private httpClient : HttpClient) { }
-  public userlogin(username, password) {
-  alert(username)
-  return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
-  .pipe(map(Users => {
-  this.setToken(Users[0].name);
-  this.getLoggedInName.emit(true);
-  return Users;
+      redirectUrl: string;
+      baseUrl:string = "http://localhost/shopnew/backend";
+      @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
+    constructor(private httpClient : HttpClient) { }
+        public userlogin(username, password) {
+          alert(username)
+        return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
+             .pipe(map(Users => {
+              this.setToken(Users[0].name);
+              this.getLoggedInName.emit(true);
+        return Users;
 }));
 }
 
