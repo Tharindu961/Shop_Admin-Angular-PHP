@@ -26,6 +26,7 @@ ngOnInit() {
 
 postdata(angForm1)
 {
+    
 this.dataService.userregistration(angForm1.value.name,angForm1.value.shopname,angForm1.value.email,angForm1.value.password)
                 .pipe(first())
                 .subscribe(
